@@ -2,9 +2,10 @@ package com.oocl.todo.controller;
 
 import com.oocl.todo.entity.Todo;
 import com.oocl.todo.service.TodoService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/todos")
@@ -16,8 +17,28 @@ public class TodoController {
     }
 
     @GetMapping
-    public Todo getTodo() {
-        Todo todo = new Todo(1, "你好", false);
+    public List<Todo> getTodo() {
+        Todo hello = new Todo(0, "hello", false);
+        todoService.addTodo(hello);
+        return todoService.getTodo();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Todo addTodo(@RequestBody Todo todo) {
         return todoService.addTodo(todo);
+    }
+
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Todo updateTodo(@PathVariable Integer id, @RequestBody Todo todo) {
+        todo.setId(id);
+        return todoService.updateTodo(todo);
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteTodo(@PathVariable Integer id) {
+        todoService.deleteTodo(id);
     }
 }
