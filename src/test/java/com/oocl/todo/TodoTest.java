@@ -14,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 public class TodoTest {
     private TodoService todoService;
@@ -54,5 +56,14 @@ public class TodoTest {
         Todo updatedTodo = todoService.addTodo(todo);
         //then
         assertEquals(todo, updatedTodo);
+    }
+
+    @Test
+    void should_return_todo_when_delete_given_id() {
+        //given
+        //when
+        todoService.deleteTodo(1);
+        //then
+        verify(todoRepository, times(1)).deleteById(1);
     }
 }
