@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
@@ -33,5 +34,15 @@ public class TodoTest {
         List<Todo> todoList = todoService.getTodo();
         //then
         assertEquals(todo, todoList.get(0));
+    }
+
+    @Test
+    void should_return_todo_when_add_todo_given_todo() {
+        //given
+        given(todoRepository.save(any())).willReturn(todo);
+        //when
+        Todo savedTodo = todoService.addTodo(this.todo);
+        //then
+        assertEquals(todo, savedTodo);
     }
 }
