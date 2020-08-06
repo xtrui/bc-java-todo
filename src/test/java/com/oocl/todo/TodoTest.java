@@ -41,8 +41,18 @@ public class TodoTest {
         //given
         given(todoRepository.save(any())).willReturn(todo);
         //when
-        Todo savedTodo = todoService.addTodo(this.todo);
+        Todo savedTodo = todoService.addTodo(todo);
         //then
         assertEquals(todo, savedTodo);
+    }
+
+    @Test
+    void should_return_todo_when_update_given_todo() {
+        //given
+        given(todoRepository.save(any())).willReturn(todo);
+        //when
+        Todo updatedTodo = todoService.addTodo(todo);
+        //then
+        assertEquals(todo, updatedTodo);
     }
 }
