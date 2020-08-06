@@ -17,7 +17,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
-public class TodoTest {
+class TodoTest {
     private TodoService todoService;
     private TodoRepository todoRepository = mock(TodoRepository.class);
     private Todo todo;
