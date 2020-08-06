@@ -13,6 +13,5 @@ public class CorsInterceptor implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 .allowedOrigins("*")
                 .allowedMethods("*");
-
     }
 }

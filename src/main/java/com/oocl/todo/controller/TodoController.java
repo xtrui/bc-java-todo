@@ -18,8 +18,6 @@ public class TodoController {
 
     @GetMapping
     public List<Todo> getTodo() {
-        Todo hello = new Todo(0, "hello", false);
-        todoService.addTodo(hello);
         return todoService.getTodo();
     }
 
